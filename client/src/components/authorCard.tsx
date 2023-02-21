@@ -1,3 +1,8 @@
+import { Facebook } from "assets/icons/facebook";
+import { Instagram } from "assets/icons/instagram";
+import { Linkedin } from "assets/icons/linkedin";
+import { Twitter } from "assets/icons/twitter";
+
 interface AuthorCardProps {
   name: string;
   img: string;
@@ -19,26 +24,10 @@ export const AuthorCard: React.FC<AuthorCardProps> = ({
       <p className="b-4 mb-4 text-base text-gray">{description}</p>
 
       <div className="m-auto flex w-3/5 justify-between">
-        <img
-          src="/icons/facebook.svg"
-          alt="facebook icon"
-          className="cursor-pointer"
-        />
-        <img
-          src="/icons/twitter.svg"
-          alt="twitter icon"
-          className="cursor-pointer"
-        />
-        <img
-          src="/icons/instagram.svg"
-          alt="instagram icon"
-          className="cursor-pointer"
-        />
-        <img
-          src="/icons/linkedin.svg"
-          alt="linkedin icon"
-          className="cursor-pointer"
-        />
+        <Facebook />
+        <Twitter />
+        <Instagram />
+        <Linkedin />
       </div>
     </div>
   );

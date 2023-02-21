@@ -25,7 +25,7 @@ export const Authors: React.FC = () => {
   ];
 
   return (
-    <section id="Authors" className="m-auto mb-60 w-4/5">
+    <section id="Authors" className="m-auto mb-20 w-4/5">
       <h1 className="mb-12 text-center text-4xl font-bold">List of Authors</h1>
       <div className="flex justify-between">
         {authors.map(({ name, description, img }) => (
