@@ -1,24 +1,27 @@
 import * as React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Homepage } from "pages";
+import { AllPosts, Homepage } from "pages";
 import { Layout } from "pages/Layout";
 import RoutePaths from "config/routes";
+import { PostDetails } from "pages/PostDetails";
 
 const AppRoutes = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path={RoutePaths.Homepage} element={<Homepage />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path={RoutePaths.Post} element={<PostDetails />} />
+      <Route path={RoutePaths.Posts} element={<AllPosts />} />
+      <Route path={RoutePaths.Homepage} element={<Homepage />} />
+    </Routes>
   );
 };
 
 export const App = () => {
   return (
-    <Layout>
-      <AppRoutes />
-    </Layout>
+    <Router>
+      <Layout>
+        <AppRoutes />
+      </Layout>
+    </Router>
   );
 };
 
