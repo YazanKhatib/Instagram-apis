@@ -1,6 +1,9 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AllPosts: React.FC = () => {
+  const navigate = useNavigate();
+
   const [data, setData] = React.useState<{ posts: [] }>();
   React.useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +27,7 @@ export const AllPosts: React.FC = () => {
           <div key={id} className="mb-12 flex">
             <div className="mr-12 h-[300px] w-[500px]">
               <img
+                onClick={() => navigate("/posts/" + id)}
                 className="mb-4 h-full w-full cursor-pointer object-cover"
                 src="https://images.unsplash.com/photo-1676476461152-8548f28a0777?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
                 alt=""

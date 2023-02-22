@@ -1,4 +1,4 @@
-import { AuthorCard } from "../../components/authorCard";
+import { AuthorCard } from "components/authorCard";
 
 export const Authors: React.FC = () => {
   const authors = [

@@ -1,7 +1,7 @@
 enum RoutePaths {
   Homepage = "/",
   Posts = "/posts",
-  Post = "post/:id",
+  Post = "/posts/:id",
 }
 
 export default RoutePaths;
