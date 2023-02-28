@@ -10,32 +10,55 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Blog {
+model User {
   id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String
+  password  String
+  Blog      Blog[]
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
-  title     String
-  body      String
 }
 
-// model Author {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   updateAt  DateTime @updatedAt
-//   firstName String
-//   lastName  String
-//   book      Book[]
-// }
+model Blog {
+  id              Int               @id @default(autoincrement())
+  createdAt       DateTime          @default(now())
+  updateAt        DateTime          @updatedAt
+  title           String
+  body            String
+  author          User              @relation(fields: [authorId], references: [id])
+  authorId        Int
+  Comment         Comment[]
+  Categories      Category[]
+  BlogsCategories BlogsCategories[]
+}
 
-// model Book {
-//   id            Int      @id @default(autoincrement())
-//   createdAt     DateTime @default(now())
-//   updateAt      DateTime @updatedAt
-//   title         String
-//   isFiction     Boolean
-//   datePublished DateTime
-//   author        Author   @relation(fields: [authorId], references: [id])
-//   authorId      Int
-// }
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  blog      Blog     @relation(fields: [blogId], references: [id])
+  blogId    Int
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+}
 
-// npx primsa db push
+model Category {
+  id              Int               @id @default(autoincrement())
+  name            String
+  blogs           Blog[]
+  createdAt       DateTime          @default(now())
+  updateAt        DateTime          @updatedAt
+  BlogsCategories BlogsCategories[]
+}
+
+model BlogsCategories {
+  blog       Blog     @relation(fields: [blogId], references: [id])
+  blogId     Int
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  createdAt  DateTime @default(now())
+  updateAt   DateTime @updatedAt
+
+  @@id([blogId, categoryId])
+}

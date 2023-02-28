@@ -5,6 +5,24 @@ type Blog = {
   body: string;
 };
 
+type User = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+};
+
+const getUsers = (): Array<User> => {
+  return [
+    {
+      firstName: "Floyd",
+      lastName: "Miles",
+      email: "floydmiles@email.com",
+      password: "Helloworld12!",
+    },
+  ];
+};
+
 const getBlogs = (): Array<Blog> => {
   return [
     {
@@ -24,19 +42,35 @@ const getBlogs = (): Array<Blog> => {
 
 const seed = async () => {
   await Promise.all(
-    getBlogs().map((blog) => {
-      return db.blog.create({
+    getUsers().map((user) => {
+      return db.user.create({
         data: {
-          title: blog.title,
-          body: blog.body,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          password: user.password,
         },
       });
     })
   );
 
-  const blog = await db.blog.findFirst({
+  const user = await db.user.findFirst({
     where: {
-      title: "His mother had always taught him",
+      firstName: "floyd",
     },
   });
+
+  await Promise.all(
+    getBlogs().map((blog) => {
+      return db.blog.create({
+        data: {
+          title: blog.title,
+          body: blog.body,
+          authorId: user?.id!,
+        },
+      });
+    })
+  );
 };
+
+seed();
