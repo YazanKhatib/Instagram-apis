@@ -16,7 +16,7 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-// GET? A single blog by Id
+// GET: A single blog by Id
 router.get("/:id", async (req: Request, res: Response) => {
   const id: number = parseInt(req.params.id);
   try {
@@ -28,6 +28,29 @@ router.get("/:id", async (req: Request, res: Response) => {
   } catch (error: any) {
     return res.status(500).json(error.message);
   }
+});
+
+// POST: A new blog
+router.post("/", async (req: Request, res: Response) => {
+  try {
+    console.log("Create a blog");
+  } catch (error: any) {}
+});
+
+// Patch
+router.patch("/:id", async (req: Request, res: Response) => {
+  const id: number = parseInt(req.params.id);
+  try {
+    console.log("Update a blog");
+  } catch (error: any) {}
+});
+
+// Delete
+router.delete("/:id", async (req: Request, res: Response) => {
+  const id: number = parseInt(req.params.id);
+  try {
+    console.log("Delete a blog");
+  } catch (error: any) {}
 });
 
 export { router as blogsRouter };

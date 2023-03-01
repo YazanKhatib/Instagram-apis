@@ -45,3 +45,7 @@ export const createBlog = async (blog: Omit<Blog, "id">): Promise<Blog> => {
     },
   });
 };
+
+export const deleteBlog = async (): Promise<void> => {};
+
+export const updateBlog = async (): Promise<void> => {};
